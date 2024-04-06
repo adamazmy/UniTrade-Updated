@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Department, Photo
+from django.shortcuts import render, redirect
+from .models import Department, Photo, Product, ProductImages
 
 # Create your views here.
 
@@ -15,8 +15,66 @@ def current(request):
 def inputCondition(request):
     return render(request, 'marketplace/condition.html')
 
+
+
 def addItem(request):
-    return render(request, 'marketplace/add.html')
+    print("POST 1")
+    print(request.method)
+    if request.method == 'POST':
+        print("POST")
+        title = request.POST.get('title')
+
+        print(title)
+
+        brand = request.POST.get('brand', '')
+        print(brand)
+
+        department = request.POST.get('department')
+        print(department)
+
+        price = request.POST['price']
+        print(price)
+
+        condition = request.POST['condition']
+        print(condition)
+
+        description = request.POST['description']
+
+        print(title, brand, department, price, condition, description)
+
+        images = request.FILES.getlist('image')  # for single file upload
+
+      
+        # Create and save the new object to the database
+        new_object = Product(
+            title=title,
+            brand=brand,
+            department_id=department,  # assuming department is a ForeignKey
+            price=price,
+            condition=condition,
+            description=description,
+            userID = 1
+            # image=image  # make sure your model has an 'image' field
+        )
+        new_object.save()
+        auto_generated_key = new_object.id
+
+        print(auto_generated_key)
+        # for image in images:
+        #     image_object = ProductImages(
+        #         productID = 
+        #     )
+        #     endfor
+        
+
+        return redirect('current')  # Redirect after POST
+
+    # If not POST method or there are form errors
+    departments = Department.objects.all()  # Assuming you have a Department model
+    return render(request, 'marketplace/add.html', {'departments': departments})
+
+
+
 
 def viewItem(request, pk):
     return render(request, 'marketplace/item.html')

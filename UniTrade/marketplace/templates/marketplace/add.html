@@ -22,7 +22,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <title> Navbar</title>
+    <title>Add Item</title>
 
 </head>
 
@@ -70,101 +70,94 @@
 
             <br>
 
-            <form>
-                <div class="row mb-3">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Title</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="inputBrand3" class="col-sm-2 col-form-label">Brand</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="brand3">
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Department</label>
-                    <div class="col-sm-10">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Select the department</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                    </div>
-                  </div>
+            <form method="post" action="" enctype="multipart/form-data" id="queued-form">
+                {% csrf_token %} 
 
-                  <div class="row mb-3">
-                    <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
-                    <div class="col-sm-10">
-                      <div class="input-group-text">
-                        <span class="input-group-text">£</span>
-                        <input type="text" class="form-control" id="inputPrice" placeholder="Enter price">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="mb-3 row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Condition</label>
-                    <div class="col-sm-10">
-                      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Pre-owned">
-                      <br>
-                    </div>
-
-
-                  <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Product Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
                 
-              </form>
+                <!-- Title Input -->
+                <div class="row mb-3">
+                  <label for="title" class="col-sm-2 col-form-label">Title</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" name="title" required>
+                  </div>
+                </div>
+                <!-- Brand Input -->
+                <div class="row mb-3">
+                  <label for="brand" class="col-sm-2 col-form-label">Brand</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="brand" name="brand">
+                  </div>
+                </div>
+                <!-- Department Select -->
+                <div class="row mb-3">
+                  <label for="department" class="col-sm-2 col-form-label">Department</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" id="department" name="department">
+                      <option selected>Select the department</option>
+                        {% for department in departments %}
+                          
+                          <option value="{{department.id}}">{{department.name}}</option>
+
+                        {% endfor %}
+                      <!-- Add department options here -->
+                    </select>
+                  </div>
+                </div>
+                <!-- Price Input -->
+                <div class="row mb-3">
+                  <label for="price" class="col-sm-2 col-form-label">Price</label>
+                  <div class="col-sm-10">
+                    <div class="input-group-text">
+                      <span class="input-group-text">Â£</span>
+                      <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" step="0.01" required>
+                    </div>
+                  </div>
+                </div>
+                <!-- Condition Input -->
+                <div class="mb-3 row">
+                  <label for="condition" class="col-sm-2 col-form-label">Condition</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control-plaintext" id="condition" name="condition" value="Pre-owned">
+                  </div>
+                </div>
+                <!-- Description Textarea -->
+                <div class="mb-3">
+                  <label for="description" class="form-label">Product Description</label>
+                  <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+              
+
+                <hr>
+                <br>
+                <br>
+
+                <div class="heading">
+                  <h2>Photos & Video</h2>
+                  <h3>Buyers want to see all details and angles. Tips for taking pro photos!</h3>
+              </div>
 
               <br>
+                <!-- Photo Upload Input -->
+                <div class="input-div">
+                  <p>Drag & drop photos here or <span class="browse">Browse</span></p>
+                  <input name="image" type="file" class="file" multiple="multiple" accept="image/jpeg, image/png, image/jpg" />
+                </div>
 
-              <hr>
-              <br>
-              <br>
-
-
-
-            <div class="heading">
-                <h2>Photos & Video</h2>
-                <h3>Buyers want to see all details and angles. Tips for taking pro photos!</h3>
-            </div>
-            <br>
-            <br>
-            <br>
-            
+              
+                  <br>            
+                  <div class="queued-div"></div>
+                  
       
-            
-
-
-        <div class="input-div">
-            <p>Drag & drop photos here or <span class="browse">Browse</span></p>
-            <input type="file" class="file" multiple="multiple" accept="image/jpeg, image/png, image/jpg" />
-          </div>
-
-          <br>  
-
-        <form id="queued-form">
-            <br>            
-            <div class="queued-div"></div>
-            
-
-            <br>
-            <br>
-          </form>
-        </div>
-
-        <div class="Confirm-button">
-          <button type="submit">Upload</button>
-        </div>
-
-          <br>
-
-
+                  <br>
+                  <br>
+                
+    
+                <!-- Submit Button -->
+                <div class="Confirm-button">
+                  <button type="submit" class="btn btn-primary">Upload</button>
+                </div> 
+            </form>
 
           
             <script>
@@ -204,7 +197,7 @@
                   for (let i = 0; i < files.length; i++) {
                     queuedImagesArray.push(files[i])
                   }
-                  queuedForm.reset();
+                  // queuedForm.reset();
                   displayQueuedImages()
                 })
             
@@ -221,8 +214,8 @@
                 })
             
                 queuedForm.addEventListener("submit", (e) => {
-                  e.preventDefault()
-                  sendQueuedImagesToServer()
+                  // e.preventDefault()
+                   sendQueuedImagesToServer()
                 });    
             
                 function sendQueuedImagesToServer() {
@@ -233,7 +226,7 @@
                   })
             
                   fetch("upload", {
-                    method: "POST",
+                    method: "post",
                     body: formData
                   })
             
@@ -247,7 +240,7 @@
                     serverMessage.style.cssText = "background-color: #f8d7da; color:#b71c1c"
                   });
             
-                }
+                 }
             
               </script>
 
