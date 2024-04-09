@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"> <!---Character encoding-->
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
@@ -9,62 +9,185 @@
 
     <!-- External Libraries-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="static/css/styles.css">
 
 
     <link rel = "stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-
-    <link rel="stylesheet" href="{% static 'css/photoUpload.css' %}">
-
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <title>Item</title>
+    <title> Navbar</title>
 </head>
-
-
-<body class="m-5">
-
-    <section id="nav-bar">
-        <div class="container"> 
-            <nav class="navbar navbar-expand-lg bg-body-tertiary" style="height: 80px;">
-
-                
-                <a href="{% url 'condition' %}" class="icon-link d-flex justify-content-center align-items-center" style="width: 30%; height: 100%;">
-                    <i class="fas fa-chevron-circle-left"></i> <!-- Plus icon -->
-                </a>
-
-
-                <div class="container-fluid">
-                    <a class="navbar-brand-sell" href="Products.html" style="text-decoration: none;">UniTrade</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<body>
+         <!---------------------------NAVIGATION BAR------------------------------>
+         <section id="nav-bar">
+            <div class="container"> 
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">UniTrade</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                           
+                            <!-- Search form -->
+                            <form class="d-flex form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <!-- New navbar items -->
+                            <ul class="navbar-nav mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex flex-column align-items-center" href="#">
+                                        <span class="fa fa-bell mb-1"></span>
+                                        <h5>Notifications</h5>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex flex-column align-items-center" href="#">
+                                        <span class="fa fa-user-plus mb-1"></span>
+                                        <h5>Sign Up</h5>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex flex-column align-items-center" href="#">
+                                        <span class="fa fa-box mb-1"></span>
+                                        <h5>My Orders</h5>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex flex-column align-items-center" href="#">
+                                        <span class="fa fa-shopping-cart mb-1"></span>
+                                        <h5>Shopping Cart</h5>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </div>
-    </section>
+                </nav>
+            </div>
+        </section>
     
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col">
-                <a href = "{% url 'current' %}" class ="btn btn-dark my-3">Go Back</a>
+        <!----------------------MINI NAV_BAR FOR FILTER----------------->
+    
+        <section id="Filter">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light" style="color: #fff;"> <!-- Add your desired classes for styling -->
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <span role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" class="nav-link category-trigger" style="cursor:pointer;">All</span>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Today's Deals</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="About us.html">About us</a>
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">History</a>
+                                </li>
+    
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="Sell Page 2.html">Sell</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+    
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Hello, username</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <h2>Trending</h2>
+                <p>New Items Added</p>
+    
+                <br> 
                 
-                {% block content %}
-                <div class="container mt-5">
-                    <h2>{{ product.title }}</h2>
-                    <p><strong>Brand:</strong> {{ product.brand }}</p>
-                    <p><strong>Description:</strong> {{ product.description }}</p>
-                    <p><strong>Price:</strong> £{{ product.price }}</p>
-                    <!-- More product fields here -->
+                <h2>Shop by Department</h2>
+                <p>Electronics & Computers</p>
+                <p>Film, Tv, Music</p>
+                <p>Textbooks</p>
+                <p>Home Equipments</p>
+                <p>Books & Literature</p>
+                <p>Sports & Leisure</p>
+    
+                <br>
+    
+                <h2>Help & Settings</h2>
+                <p>Your Account</p>
+                <p>Customer Service</p>
+                <a href="FAQ.html"><p>FAQ</p></a>
+                <a href="login Practice.html"><p>Sign Out</p></a>
+                
+            </div>
+            </div>
+        </section>
+
+    <div class="flex-box">
+        <div class="left">
+            <div class="big-img">
+                <img src="img/p1.png">
+            </div>
+            <div class="images">
+                <div class="small-img">
+                    <img src="img/p1.png" onclick="showImg(this.src)">
                 </div>
-                {% endblock %}
+                <div class="small-img">
+                    <img src="img/p2.png" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="img/p3.png" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="img/p4.png" onclick="showImg(this.src)">
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div class="right">
+            
+            <div class="pname">{Product Title}</div>
+            <div class="ratings">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <div class="price">{Price}</div>
+            <div class="size">
+                <p>Condition :</p>
+                <div class="psize active">M</div>
+                <div class="psize">L</div>
+                <div class="psize">XL</div>
+                <div class="psize">XXL</div>
+            </div>
+            <div class="quantity">
+                <p>Description :</p>
+                <input type="number" min="1" max="5" value="1">
+            </div>
+            <div class="btn-box">
+                <button class="cart-btn">Add to Cart</button>
+                <button class="buy-btn">Message Seller</button>
             </div>
         </div>
     </div>
 
+
+    <script>
+        let bigImg = document.querySelector('.big-img img');
+        function showImg(pic){
+            bigImg.src = pic;
+        }
+    </script>
 </body>
 </html>

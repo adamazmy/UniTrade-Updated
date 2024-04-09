@@ -32,26 +32,29 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     condition = models.CharField(max_length=20, choices=CONDITION_CHOICES, default='new_with_box')
     description = models.TextField()
-    #productid = models.AutoField(primary_key=True)
+    product_id = models.AutoField(primary_key=True)
     userID = models.CharField(max_length=100,  null=True)
     # image = models.ImageField(upload_to='product_images/', default='https://png.pngtree.com/png-clipart/20190918/ourmid/pngtree-load-the-3273350-png-image_1733730.jpg')
 
     def __str__(self):
-        return self.productID
+        return self.title
     
 
 def product_directory_path(instance, filename):
+    print("########################################",instance)
     # Access the title of the related Product instance
-    product_title_cleaned = instance.productid.title.replace(" ", "_")
+    product_title_cleaned = instance.title.replace(" ", "_")
     return f'products/{product_title_cleaned}/{filename}'
 
 
 class ProductImages(models.Model):
 
     imageID = models.AutoField(primary_key=True)
-    id =  models.ForeignKey(Product, on_delete=models.CASCADE, default=0)
-    imageURL = models.TextField()
+    product =  models.ForeignKey(Product, on_delete=models.CASCADE)
+    imageURL = models.ImageField(upload_to='product_images/', default='https://png.pngtree.com/png-clipart/20190918/ourmid/pngtree-load-the-3273350-png-image_1733730.jpg')
+
+    ##imageURL = models.ImageField(upload_to=product_directory_path)
 
     def __str__(self):
-        return f"Image {self.imageID} of Product {self.productID.name}"
+        return f"Image {self.imageID} of Product {self.product_id}"
 

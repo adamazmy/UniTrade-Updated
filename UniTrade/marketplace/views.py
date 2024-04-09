@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db import models
 from .models import Department, Photo, Product, ProductImages
 
 # Create your views here.
@@ -57,14 +58,19 @@ def addItem(request):
             # image=image  # make sure your model has an 'image' field
         )
         new_object.save()
-        auto_generated_key = new_object.id
 
+        auto_generated_key = new_object.pk
         print(auto_generated_key)
-        # for image in images:
-        #     image_object = ProductImages(
-        #         productID = 
-        #     )
-        #     endfor
+
+        print("****************************** Point 1")
+        for image in images:
+            
+            image_object = ProductImages(
+            imageURL = image,
+            product_id = auto_generated_key
+            )
+            image_object.save()
+        
         
 
         return redirect('current')  # Redirect after POST
