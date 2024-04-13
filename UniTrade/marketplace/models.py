@@ -51,6 +51,7 @@ class Productimage(models.Model):
 
     imageID = models.AutoField(primary_key=True)
     product =  models.ForeignKey(Product, on_delete=models.CASCADE)
+    
     imageURL = models.ImageField(upload_to='product_images/', default='https://png.pngtree.com/png-clipart/20190918/ourmid/pngtree-load-the-3273350-png-image_1733730.jpg')
 
     ##imageURL = models.ImageField(upload_to=product_directory_path)

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db import models
 from .models import Department, Photo, Product, Productimage
+import os
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -8,9 +10,10 @@ from .models import Department, Photo, Product, Productimage
 def current(request):
     departments = Department.objects.all()
     productimages = Productimage.objects.all()
+    products =Product.objects.all()
 
 
-    context = {'departments':departments, 'productimages':productimages}
+    context = {'departments':departments, 'productimages':productimages, 'products': products}
     return render(request, 'marketplace/currentListing.html', context)
 
 def inputCondition(request):
@@ -44,9 +47,10 @@ def addItem(request):
         print(title, brand, department, price, condition, description)
 
         images = request.FILES.getlist('image')  # for single file upload
-
+       
       
         # Create and save the new object to the database
+
         new_object = Product(
             title=title,
             brand=brand,
@@ -60,24 +64,36 @@ def addItem(request):
         new_object.save()
 
         auto_generated_key = new_object.pk
-        print(auto_generated_key)
+        save_path = 'static/images/' +str(auto_generated_key)
+        os.makedirs(save_path)
 
         
         for image in images:
-            
+
+            #save_path = 'static/images/' + str(auto_generated_key)  # It's better to store in 'media' for Django projects
+            # fs = FileSystemStorage(location=save_path)
+
+            # # Save the image
+            # filename = fs.save(image.name, image)  # 'image.name' should be used carefully
+
+            # image.save('13', image.filename)
+
             image_object = Productimage(
             imageURL = image,
             product_id = auto_generated_key
             )
             image_object.save()
         
-        print("****************************** Point 1")
-
+        # products = Product.objects.all()
+        #return render(request, 'marketplace/currentListing.html', {'products': products})
         return redirect('current')  # Redirect after POST
 
     # If not POST method or there are form errors
     departments = Department.objects.all()  # Assuming you have a Department model
+    
     return render(request, 'marketplace/add.html', {'departments': departments})
+
+    
 
 
 

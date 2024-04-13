@@ -76,22 +76,35 @@
                     <div class="row">
     
 
-                        {% for productimage in productimages %}
+                        {% for product in products %}
                        
-                        <div class="col-md-4">
-                            <div class="card my-2">
-                                <img class="card-img-top"
-                                    src= "images/{{ productimage.imageURL }}"
-                                    alt="loading">
-                                <div class="card-body">
-                                  <small>{{productimage.imageID}}</small>
-                                </div>
-                                <a href="{% url 'item' productimage.imageID %}" class="btn-btn-outline-dark btn-sm m-1">View</a>
-                            </div>
-                        </div> 
+                            {% if product.userID == '1' %}
+                               
+                                {% for productimage in productimages %}
+
+                                    {% if productimage.product_id == product.product_id %}
+                                                                          
+
+                                    <div class="col-md-4">
+                                        <div class="card my-2">
+                                            <img class="card-img-top"
+                                                src="/images/{{ productimage.imageURL }}"
+                                                alt="loading">
+                                            <div class="card-body">
+                                                <small>{{ productimage.imageID }}</small>
+                                            </div>
+                                            <a href="{% url 'item' productimage.imageID %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                                        </div>
+                                    </div>
+
+
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% endif %}
                         
-                        {% empty %}
-                        <h3>No Current Listing... </h3>
+                            {% empty %}
+                            <h3>No Current Listing... </h3>
                         {% endfor %} 
                         
                     </div>
