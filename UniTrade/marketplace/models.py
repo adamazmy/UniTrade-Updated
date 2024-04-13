@@ -47,7 +47,7 @@ def product_directory_path(instance, filename):
     return f'products/{product_title_cleaned}/{filename}'
 
 
-class ProductImages(models.Model):
+class Productimage(models.Model):
 
     imageID = models.AutoField(primary_key=True)
     product =  models.ForeignKey(Product, on_delete=models.CASCADE)

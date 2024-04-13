@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
 from django.db import models
-from .models import Department, Photo, Product, ProductImages
+from .models import Department, Photo, Product, Productimage
 
 # Create your views here.
 
 
 def current(request):
     departments = Department.objects.all()
-    photos = Photo.objects.all()
+    productimages = Productimage.objects.all()
 
 
-    context = {'departments':departments, 'photos':photos}
+    context = {'departments':departments, 'productimages':productimages}
     return render(request, 'marketplace/currentListing.html', context)
 
 def inputCondition(request):
@@ -62,16 +62,16 @@ def addItem(request):
         auto_generated_key = new_object.pk
         print(auto_generated_key)
 
-        print("****************************** Point 1")
+        
         for image in images:
             
-            image_object = ProductImages(
+            image_object = Productimage(
             imageURL = image,
             product_id = auto_generated_key
             )
             image_object.save()
         
-        
+        print("****************************** Point 1")
 
         return redirect('current')  # Redirect after POST
 
@@ -83,4 +83,26 @@ def addItem(request):
 
 
 def viewItem(request, pk):
+
+    
     return render(request, 'marketplace/item.html')
+
+
+def productPage(request):
+
+    return render(request, 'marketplace/products.html')
+
+
+def aboutUs(request):
+
+    return render(request,'marketplace/aboutus.html')
+
+
+def faq(request):
+
+    return render(request, 'marketplace/faq.html')
+
+
+def books(request):
+
+    return render(request, 'marketplace/books.html')
