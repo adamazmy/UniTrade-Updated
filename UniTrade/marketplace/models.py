@@ -54,6 +54,8 @@ class Productimage(models.Model):
     
     imageURL = models.ImageField(upload_to='product_images/', default='https://png.pngtree.com/png-clipart/20190918/ourmid/pngtree-load-the-3273350-png-image_1733730.jpg')
 
+    ## thumbnail = models.BooleanField(default= False)
+
     ##imageURL = models.ImageField(upload_to=product_directory_path)
 
     def __str__(self):
