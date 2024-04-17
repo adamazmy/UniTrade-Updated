@@ -27,6 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+LOGIN_REDIRECT_URL = "products"
+LOGOUT_REDIRECT_URL = "login"
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ziyadnader2005@gmail.com'
+EMAIL_HOST_PASSWORD = 'qudd djsk cxym sprz'
+EMAIL_PORT = 587
+
 
 # Application definition
 
@@ -37,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
+    'accounts',
     'marketplace.apps.MarketplaceConfig',
 ]
 
@@ -127,7 +139,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'static',
+    BASE_DIR / 'accounts' / 'static',
+
     ]
 
 
