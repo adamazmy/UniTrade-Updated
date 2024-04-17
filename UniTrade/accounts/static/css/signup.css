@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+body {
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    display: block;
+    width: 400px;  
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 400px; 
+  }
+  
+  button[type="submit"] {
+    background-color: #588ffd; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 400px;  
+    margin: 0 auto;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #3718ff;
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  p a {
+    color: #3718ff; 
+    text-decoration: none; /* Remove default underline */
+  }
+  
+  p a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+
+  .inline-link {
+    display: inline;
+  }
+
+  .centered-paragraph {
+    text-align: center;
+  }
